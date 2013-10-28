@@ -1,0 +1,14 @@
+This changelog start in V0.9.2Dev!
+
+0.9.3
+- Added help messages (English, Spanish)
+- Config.yml was re-build
+- Messages.yml was re-build
+- Admins Subcommands functions has been fixed
+- Setfood command has been re-create
+
+1.0
+- Plugin was re-wroten
+- Messages are configurable
+
+
