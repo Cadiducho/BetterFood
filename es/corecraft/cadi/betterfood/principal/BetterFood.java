@@ -1,6 +1,8 @@
 package es.corecraft.cadi.betterfood.principal;
 
 //Imports de Java
+import es.corecraft.cadi.betterfood.configs.Config;
+import es.corecraft.cadi.betterfood.configs.Mensajes;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
@@ -98,10 +100,10 @@ public class BetterFood extends JavaPlugin {
 		saveMessages();
 	}
 	/* ------------------------------------------------------------*/
-        /*                    Mensajes                                 */
-        final public String DESHIDRATACION_NIVEL_2 = ChatColor.AQUA + "Estoy sediento, me pregunto por que...";
-	final public String DESHIDRATACION_NIVEL_3 = ChatColor.AQUA + "Me siento muy exausto, necesito agua!";
-	final public String DESHIDRATACION_NIVEL_4 = ChatColor.AQUA + "Agua... Agua...";
+        /*                    Mensajes                                 
+        final public String DESHIDRATACION_NIVEL_1 = ChatColor.AQUA + "Estoy sediento, me pregunto por que...";
+	final public String DESHIDRATACION_NIVEL_2 = ChatColor.AQUA + "Me siento muy exausto, necesito agua!";
+	final public String DESHIDRATACION_NIVEL_3 = ChatColor.AQUA + "Agua... Agua...";
 	final public String CARBOHIDRATOS_NIVEL_1 = ChatColor.YELLOW + "Me siento algo debil.";
 	final public String CARBOHIDRATOS_NIVEL_2 = ChatColor.YELLOW + "Pierdo la energia muy rapidamente!";
 	final public String CARBOHIDRATOS_NIVEL_3 = ChatColor.YELLOW + "Necesito...más...carbohidratos...";
@@ -120,7 +122,7 @@ public class BetterFood extends JavaPlugin {
 	final public String PROTEINAS_MUCHAS_NIVEL_1 = ChatColor.RED + "Me siento en forma!";
 	final public String PROTEINAS_MUCHAS_NIVEL_2 = ChatColor.RED + "Mi fuerza es cada vez enorme. Esto no puede ser bueno...";
 	final public String PROTEINAS_MUCHAS_NIVEL_3 = ChatColor.RED + "Comi demasiadas proteinas...";
-        
+        */
 
 
         /*------------------------------------------------------------------*/
@@ -162,13 +164,21 @@ public class BetterFood extends JavaPlugin {
 	public void onEnable() {
 		log.info("[BetterFood] Enabled/Activado!");
 		
+                if (!Config.configFile.exists()) { 
+                    Config.save();
+                }
+               if (!Mensajes.mconfigFile.exists()) {
+                   Mensajes.createConfig();
+               }
+                Config.load();
                 SetupConfig();
+                Mensajes.load();
 		loadConfiguration();
-		PluginManager pm = this.getServer().getPluginManager();
-		pm.registerEvents(PlayerJoinListener, this);
-		pm.registerEvents(PlayerDeathListener, this);
-		pm.registerEvents(PlayerConsumeListener, this);
-		pm.registerEvents(PlayerRespawnListener, this);
+          	PluginManager manager = this.getServer().getPluginManager();
+		manager.registerEvents(PlayerJoinListener, this);
+		manager.registerEvents(PlayerDeathListener, this);
+		manager.registerEvents(PlayerConsumeListener, this);
+		manager.registerEvents(PlayerRespawnListener, this);
 		
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Timer(this), 20, 20);
 		
@@ -196,7 +206,7 @@ public class BetterFood extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
 		
      
-		if (commandLabel.equalsIgnoreCase("salud") || (commandLabel.equalsIgnoreCase("health"))) {
+		if (commandLabel.equalsIgnoreCase("salud") || (commandLabel.equalsIgnoreCase("health")) || (commandLabel.equalsIgnoreCase("betterfood"))) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				if (args.length > 0) {

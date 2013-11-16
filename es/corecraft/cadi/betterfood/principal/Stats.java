@@ -1,5 +1,7 @@
 package es.corecraft.cadi.betterfood.principal;
 
+import es.corecraft.cadi.betterfood.configs.Config;
+import es.corecraft.cadi.betterfood.configs.Mensajes;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -17,13 +19,7 @@ public class Stats {
 		partCarbo = Constantes.STAT_BAR_SIZE * (plugin.carbohidratos.get(player) / total);
 		partProtein = Constantes.STAT_BAR_SIZE * (plugin.proteinas.get(player) / total);
 		partVitamin = Constantes.STAT_BAR_SIZE * (plugin.vitaminas.get(player) / total);
-		
-                String hidratacion = plugin.getConfig().getString("Hydration");
-                String carbo = plugin.getConfig().getString("Carbohydrates");
-                String proteinas = plugin.getConfig().getString("Protein");
-                String vitaminas = plugin.getConfig().getString("Vitamin");
-                
-                String title = plugin.getConfig().getString("Title");
+
                 
                 
 		for (int i = 1; i <= Constantes.STAT_BAR_SIZE; i++) {
@@ -57,11 +53,11 @@ public class Stats {
 		}
 
 		player.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "-------------{ " +
-				ChatColor.GOLD +	title + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
-		player.sendMessage(ChatColor.AQUA + "* [" + hydrationStats + "] " + hidratacion );
-		player.sendMessage(ChatColor.YELLOW + "* [" + carbohydratesStats + "] " + carbo + " (" + (int) (partCarbo * 5) + "%)");
-		player.sendMessage(ChatColor.RED + "* [" + proteinsStats + "] " + proteinas + " (" + (int) (partProtein * 5) + "%)");
-		player.sendMessage(ChatColor.GREEN + "* [" + vitaminsStats + "] " + vitaminas + " (" + (int) (partVitamin * 5) + "%)");
+				ChatColor.GOLD + Config.TITLE + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
+		player.sendMessage(ChatColor.AQUA + "* [" + hydrationStats + "] " + Config.HIDRATACION );
+		player.sendMessage(ChatColor.YELLOW + "* [" + carbohydratesStats + "] " + Config.CARBO + " (" + (int) (partCarbo * 5) + "%)");
+		player.sendMessage(ChatColor.RED + "* [" + proteinsStats + "] " + Config.PROTEINAS + " (" + (int) (partProtein * 5) + "%)");
+		player.sendMessage(ChatColor.GREEN + "* [" + vitaminsStats + "] " + Config.VITAMINAS + " (" + (int) (partVitamin * 5) + "%)");
 		player.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "--------------------" + ChatColor.GOLD + "*" + 
 				ChatColor.YELLOW + "-------------------" + ChatColor.GREEN + "**");
 		

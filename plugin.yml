@@ -1,9 +1,9 @@
 name: BetterFood
 main: es.corecraft.cadi.betterfood.principal.BetterFood
-version: '0.9.2'
+version: '0.9.7'
 description: Estadisticas sobre tu salud alimenticia
 author: Cadiducho
 commands:
   salud:
     description: Ver tu salud alimenticia
-    aliases: health
+    aliases: [health, betterfood]
