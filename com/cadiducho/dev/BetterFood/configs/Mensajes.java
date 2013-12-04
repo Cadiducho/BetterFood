@@ -1,4 +1,4 @@
-package es.corecraft.cadi.betterfood.configs;
+package com.cadiducho.dev.BetterFood.configs;
 
 
 import java.io.File;
@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import es.corecraft.cadi.betterfood.principal.BetterFood;
+import com.cadiducho.dev.BetterFood.main.BetterFood;
 
 /**
  *

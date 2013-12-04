@@ -1,19 +1,16 @@
-package es.corecraft.cadi.betterfood.principal;
+package com.cadiducho.dev.BetterFood.main;
 
 //Imports de Java
-import es.corecraft.cadi.betterfood.configs.Config;
-import es.corecraft.cadi.betterfood.configs.Mensajes;
+import com.cadiducho.dev.BetterFood.configs.Config;
+import com.cadiducho.dev.BetterFood.configs.Mensajes;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
 //Imports del plugin
-import es.corecraft.cadi.betterfood.listeners.PlayerConsumeListener;
-import es.corecraft.cadi.betterfood.listeners.PlayerDeathListener;
-import es.corecraft.cadi.betterfood.listeners.PlayerJoinListener;
-import es.corecraft.cadi.betterfood.listeners.PlayerRespawnListener;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import com.cadiducho.dev.BetterFood.listeners.PlayerConsumeListener;
+import com.cadiducho.dev.BetterFood.listeners.PlayerDeathListener;
+import com.cadiducho.dev.BetterFood.listeners.PlayerJoinListener;
+import com.cadiducho.dev.BetterFood.listeners.PlayerRespawnListener;
 import java.util.logging.Level;
 
 //Imports de Bukkit
@@ -21,8 +18,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -50,82 +45,9 @@ public class BetterFood extends JavaPlugin {
 	public HashMap<Player, Integer> cuentaVitaminas = new HashMap<>();
 	public HashMap<Player, String> damageCause = new HashMap<>();
         
-        private FileConfiguration customConfig = null;
-	private File messagesFile = null;
-	public void reloadCustomConfig() {
-                
-           if (messagesFile == null) {
-                messagesFile = new File(getDataFolder(), "messages.yml");
-		}
-		customConfig = YamlConfiguration.loadConfiguration(messagesFile);
-
-		// Saldra tal y como esta en el .jar
-		InputStream defConfigStream = this.getResource("messages.yml");
-		if (defConfigStream != null) {
-			YamlConfiguration defConfig = YamlConfiguration
-					.loadConfiguration(defConfigStream);
-			customConfig.setDefaults(defConfig);
-		}
-
-	}
-        
-        //Mensajes y Config personalizada
-	public FileConfiguration getMessages() {
-		if (customConfig == null) {
-			this.reloadCustomConfig();
-		}
-		return customConfig;
-	}
-
-	public void saveMessages() {
-		if (customConfig == null || messagesFile == null) {
-			return;
-		}
-		try {
-			getMessages().save(messagesFile);
-		} catch (IOException ex) {
-			this.getLogger().log(Level.SEVERE,
-					"No se pudo guardar la configuración para " + messagesFile, ex);
-		}
-	}
-        
-        private void SetupConfig() {
-		getConfig().options().copyDefaults(true);
-		saveDefaultConfig();
-	}
-
-	private void loadConfiguration() {
-
-		getMessages().options().copyDefaults(true);
-		saveMessages();
-	}
-	/* ------------------------------------------------------------*/
-        /*                    Mensajes                                 
-        final public String DESHIDRATACION_NIVEL_1 = ChatColor.AQUA + "Estoy sediento, me pregunto por que...";
-	final public String DESHIDRATACION_NIVEL_2 = ChatColor.AQUA + "Me siento muy exausto, necesito agua!";
-	final public String DESHIDRATACION_NIVEL_3 = ChatColor.AQUA + "Agua... Agua...";
-	final public String CARBOHIDRATOS_NIVEL_1 = ChatColor.YELLOW + "Me siento algo debil.";
-	final public String CARBOHIDRATOS_NIVEL_2 = ChatColor.YELLOW + "Pierdo la energia muy rapidamente!";
-	final public String CARBOHIDRATOS_NIVEL_3 = ChatColor.YELLOW + "Necesito...más...carbohidratos...";
-	final public String CARBOHIDRATOS_MUCHOS_NIVEL_1 = ChatColor.YELLOW + "Genial, tengo mucha energia!.";
-	final public String CARBOHIDRATOS_MUCHOS_NIVEL_2 = ChatColor.YELLOW + "Ayuda, no puedo parar!";
-	final public String CARBOHIDRATOS_MUCHOS_NIVEL_3 = ChatColor.YELLOW + "Demasiados carbohidratos!!!";
-	final public String VITAMINAS_NIVEL_1 = ChatColor.GREEN + "Me siento algo debil.";
-	final public String VITAMINAS_NIVEL_2 = ChatColor.GREEN + "Creo que estoy enfermo.";
-	final public String VITAMINAS_NIVEL_3 = ChatColor.GREEN + "Olvide tomar mis vitaminas...";
-	final public String VITAMINAS_MUCHAS_NIVEL_1 = ChatColor.GREEN + "Me siento en forma superior!";
-	final public String VITAMINAS_MUCHAS_NIVEL_2 = ChatColor.GREEN + "Ag... me estoy mareando";
-	final public String VITAMINAS_MUCHAS_NIVEL_3 = ChatColor.GREEN + "Uf estoy enfermo, demasiadas vitaminas...";
-	final public String PROTEINAS_NIVEL_1 = ChatColor.RED + "Me siento un poco débil";
-	final public String PROTEINAS_NIVEL_2 = ChatColor.RED + "Ni siquiera puedo mover una pequeña roca!";
-	final public String PROTEINAS_NIVEL_3 = ChatColor.RED + "Necesito proteinas rapidamente!";
-	final public String PROTEINAS_MUCHAS_NIVEL_1 = ChatColor.RED + "Me siento en forma!";
-	final public String PROTEINAS_MUCHAS_NIVEL_2 = ChatColor.RED + "Mi fuerza es cada vez enorme. Esto no puede ser bueno...";
-	final public String PROTEINAS_MUCHAS_NIVEL_3 = ChatColor.RED + "Comi demasiadas proteinas...";
-        */
+        public Updater updater;
 
 
-        /*------------------------------------------------------------------*/
         private void menuAyuda(CommandSender sender) {
 		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "-------------{ " +
 				ChatColor.GOLD +	"BetterFood Help" + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
@@ -162,7 +84,7 @@ public class BetterFood extends JavaPlugin {
 	}
 	@Override
 	public void onEnable() {
-		log.info("[BetterFood] Enabled/Activado!");
+		log.info("[BetterFood] Enabled!");
 		
                 if (!Config.configFile.exists()) { 
                     Config.save();
@@ -171,9 +93,7 @@ public class BetterFood extends JavaPlugin {
                    Mensajes.createConfig();
                }
                 Config.load();
-                SetupConfig();
                 Mensajes.load();
-		loadConfiguration();
           	PluginManager manager = this.getServer().getPluginManager();
 		manager.registerEvents(PlayerJoinListener, this);
 		manager.registerEvents(PlayerDeathListener, this);
@@ -192,7 +112,14 @@ public class BetterFood extends JavaPlugin {
 			this.vitaminas.put(player, 0);
 			this.cuentaVitaminas.put(player, Constantes.CUENTAATRAS_FALTA);
 		}
-                
+                /*if (Config.UPDATER_CHECKER = true) {
+                    Updater uc = new Updater(this, "http://dev.bukkit.org/bukkit-plugins/betterfood/files.rss");
+                    if (uc.checkUpdate()) {
+                    log.log(Level.INFO, "[BetterFood] A new update is available: {0}", uc.getVersion());
+                    log.log(Level.INFO, "Get it from: {0}", uc.getLink());
+                    }
+                }*/
+
 	}
 	
 

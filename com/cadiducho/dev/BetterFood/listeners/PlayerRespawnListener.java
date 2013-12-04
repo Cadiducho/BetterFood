@@ -1,7 +1,7 @@
-package es.corecraft.cadi.betterfood.listeners;
+package com.cadiducho.dev.BetterFood.listeners;
 
-import es.corecraft.cadi.betterfood.principal.Constantes;
-import es.corecraft.cadi.betterfood.principal.BetterFood;
+import com.cadiducho.dev.BetterFood.main.Constantes;
+import com.cadiducho.dev.BetterFood.main.BetterFood;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -1,4 +1,4 @@
-package es.corecraft.cadi.betterfood.principal;
+package com.cadiducho.dev.BetterFood.main;
 
 public class Constantes {
 

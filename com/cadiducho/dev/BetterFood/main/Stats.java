@@ -1,7 +1,7 @@
-package es.corecraft.cadi.betterfood.principal;
+package com.cadiducho.dev.BetterFood.main;
 
-import es.corecraft.cadi.betterfood.configs.Config;
-import es.corecraft.cadi.betterfood.configs.Mensajes;
+import com.cadiducho.dev.BetterFood.configs.Config;
+import com.cadiducho.dev.BetterFood.configs.Mensajes;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

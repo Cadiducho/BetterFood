@@ -1,6 +1,6 @@
-package es.corecraft.cadi.betterfood.principal;
+package com.cadiducho.dev.BetterFood.main;
 
-import es.corecraft.cadi.betterfood.configs.Mensajes;
+import com.cadiducho.dev.BetterFood.configs.Mensajes;
 import java.util.Random;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
@@ -72,7 +72,7 @@ public class Timer implements Runnable {
 								}
 								if (ran.nextInt(2) == 0) {
 									plugin.damageCause.remove(player);
-									plugin.damageCause.put(player, "proteinas");
+									plugin.damageCause.put(player, "proteins");
 									player.damage(1);
 									if (!(player.isDead())) {
 										plugin.damageCause.remove(player);
@@ -82,7 +82,7 @@ public class Timer implements Runnable {
 							}
 							if (value <= 0) {
 								plugin.damageCause.remove(player);
-								plugin.damageCause.put(player, "proteinas");
+								plugin.damageCause.put(player, "proteins");
 								player.damage(999999);
 							}
 							
@@ -132,7 +132,7 @@ public class Timer implements Runnable {
 							}
 							if (value <= 0) {
 								plugin.damageCause.remove(player);
-								plugin.damageCause.put(player, "proteinasExtra");
+								plugin.damageCause.put(player, "proteinsExtra");
 								player.damage(999999);
 							}
 							
@@ -186,7 +186,7 @@ public class Timer implements Runnable {
 							}
 							if (value <= 0) {
 								plugin.damageCause.remove(player);
-								plugin.damageCause.put(player, "vitaminas");
+								plugin.damageCause.put(player, "vitamins");
 								player.damage(999999);
 							}
 							
@@ -233,7 +233,7 @@ public class Timer implements Runnable {
 							}
 							if (value <= 0) {
 								plugin.damageCause.remove(player);
-								plugin.damageCause.put(player, "vitaminasExtra");
+								plugin.damageCause.put(player, "vitaminsExtra");
 								player.damage(999999);
 							}
 							
@@ -283,7 +283,7 @@ public class Timer implements Runnable {
 								}
 								if (ran.nextInt(2) == 0) {
 									plugin.damageCause.remove(player);
-									plugin.damageCause.put(player, "carbohidratos");
+									plugin.damageCause.put(player, "carbohydrates");
 									player.damage(1);
 									if (!(player.isDead())) {
 										plugin.damageCause.remove(player);
@@ -293,7 +293,7 @@ public class Timer implements Runnable {
 							}
 							if (value <= 0) {
 								plugin.damageCause.remove(player);
-								plugin.damageCause.put(player, "carbohidratos");
+								plugin.damageCause.put(player, "carbohydrates");
 								player.damage(999999);
 							}
 							
@@ -339,7 +339,7 @@ public class Timer implements Runnable {
 								}
 								if (ran.nextInt(2) == 0) {
 									plugin.damageCause.remove(player);
-									plugin.damageCause.put(player, "carbohidratosExtra");
+									plugin.damageCause.put(player, "carbohydratesExtra");
 									player.damage(1);
 									if (!(player.isDead())) {
 										plugin.damageCause.remove(player);
@@ -349,7 +349,7 @@ public class Timer implements Runnable {
 							}
 							if (value <= 0) {
 								plugin.damageCause.remove(player);
-								plugin.damageCause.put(player, "carbohidratosExtra");
+								plugin.damageCause.put(player, "carbohydratesExtra");
 								player.damage(999999);
 							}
 							
@@ -370,7 +370,7 @@ public class Timer implements Runnable {
 						plugin.hidratacion.put(player, value);
 					} else {
 						plugin.damageCause.remove(player);
-						plugin.damageCause.put(player, "deshidratacion");
+						plugin.damageCause.put(player, "dehydration");
 						player.damage(999999);
 					}
 					
@@ -398,7 +398,7 @@ public class Timer implements Runnable {
 						}
 						if (ran.nextInt(2) == 0) {
 							plugin.damageCause.remove(player);
-							plugin.damageCause.put(player, "deshidratacion");
+							plugin.damageCause.put(player, "dehydration");
 							player.damage(1);
 							if (!(player.isDead())) {
 								plugin.damageCause.remove(player);
