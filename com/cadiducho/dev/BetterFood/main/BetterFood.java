@@ -36,7 +36,7 @@ public class BetterFood extends JavaPlugin {
 	public PlayerConsumeListener PlayerConsumeListener = new PlayerConsumeListener(this);
 	public PlayerRespawnListener PlayerRespawnListener = new PlayerRespawnListener(this);
 	
-	public HashMap<Player, Integer> hidratacion = new HashMap<>();
+	public HashMap<Player, Integer> hidratacion = new HashMap<Player, Integer>();
 	public HashMap<Player, Integer> carbohidratos = new HashMap<>();
 	public HashMap<Player, Integer> cuentaCarbohidratos = new HashMap<>();
 	public HashMap<Player, Integer> proteinas = new HashMap<>();

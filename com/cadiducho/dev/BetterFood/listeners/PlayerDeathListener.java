@@ -27,39 +27,40 @@ public class PlayerDeathListener implements Listener {
         
         @EventHandler
         public void onPlayerDeath(PlayerDeathEvent e) {
-                if (e.getEntity() instanceof Player) {
-                        Player player = (Player) e.getEntity();                        
-                        if (plugin.damageCause.get(player).equalsIgnoreCase("dehydration")) {
+                Player player = (Player)e.getEntity();
+                String playerName = player.getName(); // You really need to change this to a map of strings, not Players!
+                String damageCause = plugin.damageCause.get(playerName);                                     
+                        if (damageCause != null && damageCause.equalsIgnoreCase("dehydration")) {
                                 e.setDeathMessage(deathHydration.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
-                        } else if (plugin.damageCause.get(player).equalsIgnoreCase("carbohydrates")) {
+                        } else if (damageCause != null && damageCause.equalsIgnoreCase("carbohydrates")) {
                                 e.setDeathMessage(deathCarbohydrates.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
-                        } else if (plugin.damageCause.get(player).equalsIgnoreCase("carbohydratesExtra")) {
+                        } else if (damageCause != null && damageCause.equalsIgnoreCase("carbohydratesExtra")) {
                                 e.setDeathMessage(deathCarbohydratesExtra.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
-                        } else if (plugin.damageCause.get(player).equalsIgnoreCase("vitamins")) {
+                        } else if (damageCause != null && damageCause.equalsIgnoreCase("vitamins")) {
                                 e.setDeathMessage(deathVitamins.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
-                        } else if (plugin.damageCause.get(player).equalsIgnoreCase("vitaminsExtra")) {
+                        } else if (damageCause != null && damageCause.equalsIgnoreCase("vitaminsExtra")) {
                                 e.setDeathMessage(deathVitaminsExtra.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
-                        } else if (plugin.damageCause.get(player).equalsIgnoreCase("proteins")) {
+                        } else if (damageCause != null && damageCause.equalsIgnoreCase("proteins")) {
                                 e.setDeathMessage(deathProteins.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
-                        } else if (plugin.damageCause.get(player).equalsIgnoreCase("proteinsExtra")) {
+                        } else if (damageCause != null && damageCause.equalsIgnoreCase("proteinsExtra")) {
                                 e.setDeathMessage(deathProteinsExtra.replaceAll("%player%", player.getName()));
                                 plugin.damageCause.remove(player);
                                 plugin.damageCause.put(player, null);
                         }
                         
-                }
+                
                 
                 plugin.hidratacion.remove(e.getEntity());
                 plugin.hidratacion.put(e.getEntity(), Constantes.COMIENZO_HIDRATACION);
