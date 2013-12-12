@@ -1,6 +1,6 @@
 package com.cadiducho.dev.BetterFood.listeners;
 
-import com.cadiducho.dev.BetterFood.main.Constantes;
+import com.cadiducho.dev.BetterFood.main.Stats;
 import com.cadiducho.dev.BetterFood.main.BetterFood;
 
 import org.bukkit.entity.Player;
@@ -19,14 +19,14 @@ public class PlayerJoinListener implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		Player player = e.getPlayer();
-		plugin.hidratacion.put(player, Constantes.COMIENZO_HIDRATACION);
+		plugin.hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
 		plugin.damageCause.put(player, null);
 		plugin.carbohidratos.put(player, 0);
-		plugin.cuentaCarbohidratos.put(player, Constantes.CUENTAATRAS_FALTA);
+		plugin.cuentaCarbohidratos.put(player, Stats.CUENTAATRAS_FALTA);
 		plugin.proteinas.put(player, 0);
-		plugin.cuentaProteinas.put(player, Constantes.CUENTAATRAS_FALTA);
+		plugin.cuentaProteinas.put(player, Stats.CUENTAATRAS_FALTA);
 		plugin.vitaminas.put(player, 0);
-		plugin.cuentaVitaminas.put(player, Constantes.CUENTAATRAS_FALTA);
+		plugin.cuentaVitaminas.put(player, Stats.CUENTAATRAS_FALTA);
 	}
 	
 }

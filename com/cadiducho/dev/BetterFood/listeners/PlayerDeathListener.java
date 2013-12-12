@@ -1,6 +1,6 @@
 package com.cadiducho.dev.BetterFood.listeners;
 
-import com.cadiducho.dev.BetterFood.main.Constantes;
+import com.cadiducho.dev.BetterFood.main.Stats;
 import com.cadiducho.dev.BetterFood.main.BetterFood;
 
 import org.bukkit.entity.Player;
@@ -63,22 +63,22 @@ public class PlayerDeathListener implements Listener {
                 
                 
                 plugin.hidratacion.remove(e.getEntity());
-                plugin.hidratacion.put(e.getEntity(), Constantes.COMIENZO_HIDRATACION);
+                plugin.hidratacion.put(e.getEntity(), Stats.COMIENZO_HIDRATACION);
                 
                 plugin.carbohidratos.remove(e.getEntity());
                 plugin.carbohidratos.put(e.getEntity(), 0);
                 plugin.cuentaCarbohidratos.remove(e.getEntity());
-                plugin.cuentaCarbohidratos.put(e.getEntity(), Constantes.CUENTAATRAS_FALTA);
+                plugin.cuentaCarbohidratos.put(e.getEntity(), Stats.CUENTAATRAS_FALTA);
 
                 plugin.proteinas.remove(e.getEntity());
                 plugin.proteinas.put(e.getEntity(), 0);
                 plugin.cuentaProteinas.remove(e.getEntity());
-                plugin.cuentaProteinas.put(e.getEntity(), Constantes.CUENTAATRAS_FALTA);
+                plugin.cuentaProteinas.put(e.getEntity(), Stats.CUENTAATRAS_FALTA);
                 
                 plugin.vitaminas.remove(e.getEntity());
                 plugin.vitaminas.put(e.getEntity(), 0);
                 plugin.cuentaVitaminas.remove(e.getEntity());
-                plugin.cuentaVitaminas.put(e.getEntity(), Constantes.CUENTAATRAS_FALTA);
+                plugin.cuentaVitaminas.put(e.getEntity(), Stats.CUENTAATRAS_FALTA);
                 
                 plugin.damageCause.remove(e.getEntity());
                 plugin.damageCause.put(e.getEntity(), null);

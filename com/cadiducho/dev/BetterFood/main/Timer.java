@@ -42,7 +42,7 @@ public class Timer implements Runnable {
 							plugin.cuentaProteinas.put(player, value);
 							
 							if (value == 119) {
-								player.sendMessage(Mensajes.PROTEINAS_NIVEL_1.getText());
+								player.sendMessage(Mensajes.PROTEINAS_NIVEL_1);
 							}
 							if (value <= 120 && value > 90) {
 								if (ran.nextInt(10) == 0) {
@@ -50,7 +50,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 90) {
-								player.sendMessage(Mensajes.PROTEINAS_NIVEL_2.getText());
+								player.sendMessage(Mensajes.PROTEINAS_NIVEL_2);
 							}
 							if (value <= 90 && value > 60) {
 								if (ran.nextInt(8) == 0) {
@@ -61,7 +61,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 60) {
-								player.sendMessage(Mensajes.PROTEINAS_NIVEL_3.getText());
+								player.sendMessage(Mensajes.PROTEINAS_NIVEL_3 );
 							}
 							if (value <= 60) {
 								if (ran.nextInt(6) == 0) {
@@ -98,7 +98,7 @@ public class Timer implements Runnable {
 							plugin.cuentaProteinas.put(player, value);
 							
 							if (value == 119) {
-								player.sendMessage(Mensajes.PROTEINAS_MUCHAS_NIVEL_1.getText());
+								player.sendMessage(Mensajes.PROTEINAS_MUCHAS_NIVEL_1 );
 							}
 							if (value <= 120 && value > 90) {
 								if (ran.nextInt(10) == 0) {
@@ -106,7 +106,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 90) {
-								player.sendMessage(Mensajes.PROTEINAS_MUCHAS_NIVEL_2.getText());
+								player.sendMessage(Mensajes.PROTEINAS_MUCHAS_NIVEL_2 );
 							}
 							if (value <= 90 && value > 60) {
 								if (ran.nextInt(8) == 0) {
@@ -117,7 +117,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 60) {
-								player.sendMessage(Mensajes.PROTEINAS_MUCHAS_NIVEL_3.getText());
+								player.sendMessage(Mensajes.PROTEINAS_MUCHAS_NIVEL_3 );
 							}
 							if (value <= 60) {
 								if (ran.nextInt(6) == 0) {
@@ -136,9 +136,9 @@ public class Timer implements Runnable {
 								player.damage(999999);
 							}
 							
-						} else if (plugin.cuentaProteinas.get(player) < Constantes.CUENTAATRAS_FALTA) {
+						} else if (plugin.cuentaProteinas.get(player) < Stats.CUENTAATRAS_FALTA) {
 							plugin.cuentaProteinas.remove(player);
-							plugin.cuentaProteinas.put(player, Constantes.CUENTAATRAS_FALTA);
+							plugin.cuentaProteinas.put(player, Stats.CUENTAATRAS_FALTA);
 						}
 						
 						/*
@@ -152,7 +152,7 @@ public class Timer implements Runnable {
 							plugin.cuentaVitaminas.put(player, value);
 							
 							if (value == 119) {
-								player.sendMessage(Mensajes.VITAMINAS_NIVEL_1.getText());
+								player.sendMessage(Mensajes.VITAMINAS_NIVEL_1 );
 							}
 							if (value <= 120 && value > 90) {
 								if (ran.nextInt(10) == 0) {
@@ -160,7 +160,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 90) {
-								player.sendMessage(Mensajes.VITAMINAS_NIVEL_2.getText());
+								player.sendMessage(Mensajes.VITAMINAS_NIVEL_2 );
 							}
 							if (value <= 90 && value > 60) {
 								if (ran.nextInt(8) == 0) {
@@ -171,7 +171,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 60) {
-								player.sendMessage(Mensajes.VITAMINAS_NIVEL_3.getText());
+								player.sendMessage(Mensajes.VITAMINAS_NIVEL_3 );
 							}
 							if (value <= 60) {
 								if (ran.nextInt(6) == 0) {
@@ -202,7 +202,7 @@ public class Timer implements Runnable {
 							plugin.cuentaVitaminas.put(player, value);
 							
 							if (value == 119) {
-								player.sendMessage(Mensajes.VITAMINAS_MUCHAS_NIVEL_1.getText());
+								player.sendMessage(Mensajes.VITAMINAS_MUCHAS_NIVEL_1 );
 							}
 							if (value <= 120 && value > 90) {
 								if (ran.nextInt(10) == 0) {
@@ -210,7 +210,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 90) {
-								player.sendMessage(Mensajes.VITAMINAS_MUCHAS_NIVEL_2.getText());
+								player.sendMessage(Mensajes.VITAMINAS_MUCHAS_NIVEL_2 );
 							}
 							if (value <= 90 && value > 60) {
 								if (ran.nextInt(8) == 0) {
@@ -221,7 +221,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 60) {
-								player.sendMessage(Mensajes.VITAMINAS_MUCHAS_NIVEL_3.getText());
+								player.sendMessage(Mensajes.VITAMINAS_MUCHAS_NIVEL_3 );
 							}
 							if (value <= 60) {
 								if (ran.nextInt(6) == 0) {
@@ -237,9 +237,9 @@ public class Timer implements Runnable {
 								player.damage(999999);
 							}
 							
-						} else if (plugin.cuentaVitaminas.get(player) < Constantes.CUENTAATRAS_FALTA) {
+						} else if (plugin.cuentaVitaminas.get(player) < Stats.CUENTAATRAS_FALTA) {
 							plugin.cuentaVitaminas.remove(player);
-							plugin.cuentaVitaminas.put(player, Constantes.CUENTAATRAS_FALTA);
+							plugin.cuentaVitaminas.put(player, Stats.CUENTAATRAS_FALTA);
 						}
 						
 						/*
@@ -253,7 +253,7 @@ public class Timer implements Runnable {
 							plugin.cuentaCarbohidratos.put(player, value);
 							
 							if (value == 119) {
-								player.sendMessage(Mensajes.CARBOHIDRATOS_NIVEL_1.getText());
+								player.sendMessage(Mensajes.CARBOHIDRATOS_NIVEL_1 );
 							}
 							if (value <= 120 && value > 90) {
 								if (ran.nextInt(10) == 0) {
@@ -261,7 +261,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 90) {
-								player.sendMessage(Mensajes.CARBOHIDRATOS_NIVEL_2.getText());
+								player.sendMessage(Mensajes.CARBOHIDRATOS_NIVEL_2 );
 							}
 							if (value <= 90 && value > 60) {
 								if (ran.nextInt(8) == 0) {
@@ -272,7 +272,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 60) {
-								player.sendMessage(Mensajes.CARBOHIDRATOS_NIVEL_3.getText());
+								player.sendMessage(Mensajes.CARBOHIDRATOS_NIVEL_3 );
 							}
 							if (value <= 60) {
 								if (ran.nextInt(6) == 0) {
@@ -309,7 +309,7 @@ public class Timer implements Runnable {
 							plugin.cuentaCarbohidratos.put(player, value);
 							
 							if (value == 119) {
-								player.sendMessage(Mensajes.CARBOHIDRATOS_MUCHOS_NIVEL_1.getText());
+								player.sendMessage(Mensajes.CARBOHIDRATOS_MUCHOS_NIVEL_1 );
 							}
 							if (value <= 120 && value > 90) {
 								if (ran.nextInt(10) == 0) {
@@ -317,7 +317,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 90) {
-								player.sendMessage(Mensajes.CARBOHIDRATOS_MUCHOS_NIVEL_2.getText());
+								player.sendMessage(Mensajes.CARBOHIDRATOS_MUCHOS_NIVEL_2 );
 							}
 							if (value <= 90 && value > 60) {
 								if (ran.nextInt(8) == 0) {
@@ -328,7 +328,7 @@ public class Timer implements Runnable {
 								}
 							}
 							if (value == 60) {
-								player.sendMessage(Mensajes.CARBOHIDRATOS_MUCHOS_NIVEL_3.getText());
+								player.sendMessage(Mensajes.CARBOHIDRATOS_MUCHOS_NIVEL_3 );
 							}
 							if (value <= 60) {
 								if (ran.nextInt(6) == 0) {
@@ -353,9 +353,9 @@ public class Timer implements Runnable {
 								player.damage(999999);
 							}
 							
-						} else if (plugin.cuentaCarbohidratos.get(player) < Constantes.CUENTAATRAS_FALTA) {
+						} else if (plugin.cuentaCarbohidratos.get(player) < Stats.CUENTAATRAS_FALTA) {
 							plugin.cuentaCarbohidratos.remove(player);
-							plugin.cuentaCarbohidratos.put(player, Constantes.CUENTAATRAS_FALTA);
+							plugin.cuentaCarbohidratos.put(player, Stats.CUENTAATRAS_FALTA);
 						}
 					}
 					
@@ -376,7 +376,7 @@ public class Timer implements Runnable {
 					
 					if (value <= 120 && value > 90) {
 						if (value == 120) {
-							player.sendMessage(Mensajes.DESHIDRATACION_NIVEL_1.getText());
+							player.sendMessage(Mensajes.DESHIDRATACION_NIVEL_1 );
 						}
 						if (ran.nextInt(10) == 0) {
 							player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (ran.nextInt(6) + 6) * 20, 0));
@@ -385,7 +385,7 @@ public class Timer implements Runnable {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 22, 0));
 						player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 22, 0));
 						if (value == 90) {
-							player.sendMessage(Mensajes.DESHIDRATACION_NIVEL_2.getText());
+							player.sendMessage(Mensajes.DESHIDRATACION_NIVEL_2 );
 						}
 						if (ran.nextInt(8) == 0) {
 							player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (ran.nextInt(12) + 6) * 20, 1));
@@ -394,7 +394,7 @@ public class Timer implements Runnable {
 						player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 22, 1));
 						player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 22, 1));
 						if (value == 60) {
-							player.sendMessage(Mensajes.DESHIDRATACION_NIVEL_3.getText());
+							player.sendMessage(Mensajes.DESHIDRATACION_NIVEL_3 );
 						}
 						if (ran.nextInt(2) == 0) {
 							plugin.damageCause.remove(player);

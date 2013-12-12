@@ -1,6 +1,6 @@
 package com.cadiducho.dev.BetterFood.listeners;
 
-import com.cadiducho.dev.BetterFood.main.Constantes;
+import com.cadiducho.dev.BetterFood.main.Stats;
 import com.cadiducho.dev.BetterFood.main.BetterFood;
 
 import org.bukkit.Material;
@@ -109,7 +109,7 @@ public class PlayerConsumeListener implements Listener {
 		
 		if (e.getItem().getType() == Material.MILK_BUCKET) {
 			plugin.hidratacion.remove(player);
-			plugin.hidratacion.put(player, Constantes.COMIENZO_HIDRATACION);
+			plugin.hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
 			e.getPlayer().removePotionEffect(PotionEffectType.CONFUSION);
 		}
 		
@@ -121,8 +121,8 @@ public class PlayerConsumeListener implements Listener {
 				e.getPlayer().removePotionEffect(PotionEffectType.SLOW_DIGGING);
 			}
 			variable += 600;
-			if (variable >= Constantes.COMIENZO_HIDRATACION) {
-				variable = Constantes.COMIENZO_HIDRATACION;
+			if (variable >= Stats.COMIENZO_HIDRATACION) {
+				variable = Stats.COMIENZO_HIDRATACION;
 			}
 			plugin.hidratacion.put(player, variable);
 		}
@@ -136,8 +136,8 @@ public class PlayerConsumeListener implements Listener {
 				e.getPlayer().removePotionEffect(PotionEffectType.SLOW_DIGGING);
 			}
 			variable += 400;
-			if (variable >= Constantes.COMIENZO_HIDRATACION) {
-				variable = Constantes.COMIENZO_HIDRATACION;
+			if (variable >= Stats.COMIENZO_HIDRATACION) {
+				variable = Stats.COMIENZO_HIDRATACION;
 			}
 			plugin.hidratacion.put(player, variable);
 			e.getPlayer().removePotionEffect(PotionEffectType.SLOW);

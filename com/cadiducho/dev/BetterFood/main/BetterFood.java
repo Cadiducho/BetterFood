@@ -45,7 +45,7 @@ public class BetterFood extends JavaPlugin {
 	public HashMap<Player, Integer> cuentaVitaminas = new HashMap<>();
 	public HashMap<Player, String> damageCause = new HashMap<>();
         
-        public Updater updater;
+      
 
 
         private void menuAyuda(CommandSender sender) {
@@ -80,7 +80,7 @@ public class BetterFood extends JavaPlugin {
 		carbohidratos.remove(player);
 		carbohidratos.put(player, value);
 		hidratacion.remove(player);
-		hidratacion.put(player, Constantes.COMIENZO_HIDRATACION);
+		hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
 	}
 	@Override
 	public void onEnable() {
@@ -90,7 +90,7 @@ public class BetterFood extends JavaPlugin {
                     Config.save();
                 }
                if (!Mensajes.mconfigFile.exists()) {
-                   Mensajes.createConfig();
+                   Mensajes.save();
                }
                 Config.load();
                 Mensajes.load();
@@ -103,22 +103,16 @@ public class BetterFood extends JavaPlugin {
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Timer(this), 20, 20);
 		
 		for (Player player : Bukkit.getOnlinePlayers()) {
-			this.hidratacion.put(player, Constantes.COMIENZO_HIDRATACION);
+			this.hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
 			this.damageCause.put(player, null);
 			this.carbohidratos.put(player, 0);
-			this.cuentaCarbohidratos.put(player, Constantes.CUENTAATRAS_FALTA);
+			this.cuentaCarbohidratos.put(player, Stats.CUENTAATRAS_FALTA);
 			this.proteinas.put(player, 0);
-			this.cuentaProteinas.put(player, Constantes.CUENTAATRAS_FALTA);
+			this.cuentaProteinas.put(player, Stats.CUENTAATRAS_FALTA);
 			this.vitaminas.put(player, 0);
-			this.cuentaVitaminas.put(player, Constantes.CUENTAATRAS_FALTA);
+			this.cuentaVitaminas.put(player, Stats.CUENTAATRAS_FALTA);
 		}
-                /*if (Config.UPDATER_CHECKER = true) {
-                    Updater uc = new Updater(this, "http://dev.bukkit.org/bukkit-plugins/betterfood/files.rss");
-                    if (uc.checkUpdate()) {
-                    log.log(Level.INFO, "[BetterFood] A new update is available: {0}", uc.getVersion());
-                    log.log(Level.INFO, "Get it from: {0}", uc.getLink());
-                    }
-                }*/
+               
 
 	}
 	

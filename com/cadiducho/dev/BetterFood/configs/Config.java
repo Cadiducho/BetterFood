@@ -42,8 +42,7 @@ public class Config {
 
                 try {
                         config.save(configFile);
-                        BetterFood.log.log(Level.INFO, "config cargados");
-                } catch (Exception e) {
+               } catch (Exception e) {
                         BetterFood.log.log(Level.WARNING, "Error while saving the Config: {0}!", e.getMessage());
                 }
         }
