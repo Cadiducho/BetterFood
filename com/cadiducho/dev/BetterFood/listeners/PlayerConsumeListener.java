@@ -143,6 +143,9 @@ public class PlayerConsumeListener implements Listener {
 			e.getPlayer().removePotionEffect(PotionEffectType.SLOW);
 			e.getPlayer().removePotionEffect(PotionEffectType.SLOW_DIGGING);
 		}
+                //1.7 Update
+
+                
 		
 	}
 	

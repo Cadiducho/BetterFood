@@ -5,6 +5,9 @@ import java.util.logging.Level;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.cadiducho.dev.BetterFood.main.BetterFood;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Config {
@@ -14,9 +17,11 @@ public class Config {
         public static String CARBO = "Carbohydrates";
         public static String PROTEINAS = "Proteins";
         public static String VITAMINAS = "Vitamins";
-        public static boolean UPDATER_CHECKER = true;
+        public static boolean UPDATER = true;
         //File
         public static File configFile = new File("plugins/BetterFood/config.yml");
+        
+        
 
 
         
@@ -28,7 +33,8 @@ public class Config {
                 CARBO = config.getString("Menu.Carbohydrates");
                 PROTEINAS = config.getString("Menu.Protein");
                 VITAMINAS = config.getString("Menu.Vitamin");
-                UPDATER_CHECKER = config.getBoolean("UpdaterChecker");
+                UPDATER = config.getBoolean("UpdaterChecker");
+                
         }
         
         public static void save() {
@@ -38,11 +44,11 @@ public class Config {
                 config.set("Menu.Carbohydrates", CARBO);
                 config.set("Menu.Protein", PROTEINAS);
                 config.set("Menu.Vitamin", VITAMINAS);
-                config.set("UpdaterChecker", UPDATER_CHECKER);
-
+                config.set("UpdaterChecker", UPDATER);
+                
                 try {
                         config.save(configFile);
-               } catch (Exception e) {
+               } catch (IOException e) {
                         BetterFood.log.log(Level.WARNING, "Error while saving the Config: {0}!", e.getMessage());
                 }
         }

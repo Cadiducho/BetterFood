@@ -11,32 +11,40 @@ import com.cadiducho.dev.BetterFood.listeners.PlayerConsumeListener;
 import com.cadiducho.dev.BetterFood.listeners.PlayerDeathListener;
 import com.cadiducho.dev.BetterFood.listeners.PlayerJoinListener;
 import com.cadiducho.dev.BetterFood.listeners.PlayerRespawnListener;
-import java.util.logging.Level;
+import java.io.File;
+import java.util.List;
 
 //Imports de Bukkit
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 
 public class BetterFood extends JavaPlugin {
 
 	public static final Logger log = Logger.getLogger("Minecraft");
 	
-	
+	public File data_file = new File("plugins/BetterFood/data", "stats.yml");
+        public FileConfiguration dataStats = YamlConfiguration.loadConfiguration(data_file);
+        
 	public Stats s = new Stats(this);
-	
-	
+        BetterFood p = this;	
+        
 	public PlayerJoinListener PlayerJoinListener = new PlayerJoinListener(this);
 	public PlayerDeathListener PlayerDeathListener = new PlayerDeathListener(this);
 	public PlayerConsumeListener PlayerConsumeListener = new PlayerConsumeListener(this);
 	public PlayerRespawnListener PlayerRespawnListener = new PlayerRespawnListener(this);
 	
-	public HashMap<Player, Integer> hidratacion = new HashMap<Player, Integer>();
+	public HashMap<Player, Integer> hidratacion = new HashMap<>();
 	public HashMap<Player, Integer> carbohidratos = new HashMap<>();
 	public HashMap<Player, Integer> cuentaCarbohidratos = new HashMap<>();
 	public HashMap<Player, Integer> proteinas = new HashMap<>();
@@ -44,47 +52,13 @@ public class BetterFood extends JavaPlugin {
 	public HashMap<Player, Integer> vitaminas = new HashMap<>();
 	public HashMap<Player, Integer> cuentaVitaminas = new HashMap<>();
 	public HashMap<Player, String> damageCause = new HashMap<>();
-        
-      
 
-
-        private void menuAyuda(CommandSender sender) {
-		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "-------------{ " +
-				ChatColor.GOLD +	"BetterFood Help" + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
-            sender.sendMessage(ChatColor.GREEN + "/health ayuda ► Ayuda en español/Help in Spanish");
-            sender.sendMessage(ChatColor.GREEN + "/health ► View your health stats");
-            if (sender.hasPermission("betterfood.admin")) {
-            sender.sendMessage(ChatColor.GOLD + "[ADMIN]" + ChatColor.YELLOW + "/health reset <player> ► Reset someone stats");
-            sender.sendMessage(ChatColor.GOLD +  "[ADMIN]" + ChatColor.YELLOW + "/health setfood <player> <int> ► Set someone stats");
-            }
-            sender.sendMessage(ChatColor.GREEN + "/health help ► Show this message");
-        }
-        private void menuAyudaEs(CommandSender sender) {
-		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "-------------{ " +
-				ChatColor.GOLD +	"Ayuda de BetterFood" + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
-            sender.sendMessage(ChatColor.GREEN + "/salud help ► Help in English");
-            sender.sendMessage(ChatColor.GREEN + "/salud ► Ver tus stats de salud");
-            if (sender.hasPermission("betterfood.admin")) {
-            sender.sendMessage(ChatColor.GOLD + "[ADMIN]" + ChatColor.YELLOW + "/salud reset <jugador> ► Reiniciar las stats de alguien");
-            sender.sendMessage(ChatColor.GOLD +  "[ADMIN]" + ChatColor.YELLOW + "/salud setfood <jugador> <nºint> ► Cambiar las stats de alguien");
-            }
-            sender.sendMessage(ChatColor.GREEN + "/salud ayuda ► Ver este mensaje");
-        }
-        private static int value;
-        public void reset(Player player) {
-		value = 0;
-		proteinas.remove(player);
-		proteinas.put(player, value);
-		vitaminas.remove(player);
-		vitaminas.put(player, value);
-		carbohidratos.remove(player);
-		carbohidratos.put(player, value);
-		hidratacion.remove(player);
-		hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
-	}
 	@Override
 	public void onEnable() {
-		log.info("[BetterFood] Enabled!");
+            if (Config.UPDATER = true) {
+                Update updateCheck = new Update(66441, "acb5d9fcd0c7f710d50c2e893eccc537917e7417");
+            }
+		log.info("[BetterFood] Plugin have been enabled!");
 		
                 if (!Config.configFile.exists()) { 
                     Config.save();
@@ -99,6 +73,9 @@ public class BetterFood extends JavaPlugin {
 		manager.registerEvents(PlayerDeathListener, this);
 		manager.registerEvents(PlayerConsumeListener, this);
 		manager.registerEvents(PlayerRespawnListener, this);
+                
+                getCommand("health").setExecutor(new Comandos());
+                
 		
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Timer(this), 20, 20);
 		
@@ -112,7 +89,8 @@ public class BetterFood extends JavaPlugin {
 			this.vitaminas.put(player, 0);
 			this.cuentaVitaminas.put(player, Stats.CUENTAATRAS_FALTA);
 		}
-               
+
+                       
 
 	}
 	
@@ -120,46 +98,25 @@ public class BetterFood extends JavaPlugin {
         
 	@Override
 	public void onDisable() {
-		log.info("[BetterFood] Disables/Desactivado!!");
+              log.info("[BetterFood] Plugin have been disabled!!");
+              		
+                List<String> hdata = dataStats.getStringList("hidratación"); 
+                for (Player pl : hidratacion.keySet()){
+                   hdata.add(pl.getName() + ":" + hidratacion.get(pl).intValue());
+                }
+                List<String> cdata = dataStats.getStringList("carbohidratos"); 
+                for (Player pl : carbohidratos.keySet()){
+                   cdata.add(pl.getName() + ":" + carbohidratos.get(pl).intValue());
+                }
+                List<String> vdata = dataStats.getStringList("vitaminas"); 
+                for (Player pl : vitaminas.keySet()){
+                   vdata.add(pl.getName() + ":" + vitaminas.get(pl).intValue());
+                }
+                List<String> pdata = dataStats.getStringList("proteinas"); 
+                for (Player pl : proteinas.keySet()){
+                   pdata.add(pl.getName() + ":" + proteinas.get(pl).intValue());
+                }
+
 	}
-	
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-		
-     
-		if (commandLabel.equalsIgnoreCase("salud") || (commandLabel.equalsIgnoreCase("health")) || (commandLabel.equalsIgnoreCase("betterfood"))) {
-			if (sender instanceof Player) {
-				Player player = (Player) sender;
-				if (args.length > 0) {
-					if (args[0].equalsIgnoreCase("setfood") && player.hasPermission("betterfood.admin")) {
-                                            Player user = player.getServer().getPlayer(args[2]);
-                                            
-						user.setFoodLevel(Integer.parseInt(args[1]));
-					} else { sender.sendMessage(ChatColor.GREEN + "Use /health setfood <int> <player>");}
-                                        if (args[0].equalsIgnoreCase("reset") && player.hasPermission("betterfood.admin") &&
-							args.length >= 2) {
-						reset(getServer().getPlayer(args[1]));  
-                                               
-					} else { sender.sendMessage(ChatColor.GREEN + "Use /health reset <player>");}
-                                        if (args[0].equalsIgnoreCase("help")) {
-                                            menuAyuda(sender);
-                                        }
-                                        if (args[0].equalsIgnoreCase("ayuda")) {
-                                            menuAyudaEs(sender);                                          
-                                        }
-                                       /* if (args[0].equalsIgnoreCase("set") && player.hasPermission("betterfood.admin")) {
-                                            
-                                        } *///To Do 
-				} if (args.length > 3){
-                                    sender.sendMessage(ChatColor.GREEN + "Use /health help for command help");
-				} if (args.length <= 0){
-                                    Stats.show(player);
-                                }
-                                
-			} else { sender.sendMessage(ChatColor.RED + "This command only can be executable by a player"); }
-		}
-		
-		return false;
-	}
-	
+
 }

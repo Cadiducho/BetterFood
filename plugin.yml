@@ -1,9 +1,12 @@
 name: BetterFood
 main: com.cadiducho.dev.BetterFood.main.BetterFood
-version: '1.1Beta'
+version: '1.0Beta'
 description: Estadisticas sobre tu salud alimenticia
 author: Cadiducho
 commands:
   salud:
     description: Ver tu salud alimenticia
-    aliases: [health, betterfood]
+    aliases: [health]
+  betterfood:
+    description: BetterFood Admin Command
+    aliases: [bf, healthadmin]

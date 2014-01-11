@@ -32,6 +32,14 @@ public class Mensajes {
         public static String PROTEINAS_MUCHAS_NIVEL_2 = "Mi fuerza es cada vez enorme. Esto no puede ser bueno...";
         public static String PROTEINAS_MUCHAS_NIVEL_3 = "Comi demasiadas proteinas...";
 
+        public static String deathHydration = "%player% died of dehydration";
+        public static String deathCarbohydrates = "%player% died due to a lack of carbohydrates";
+        public static String deathCarbohydratesExtra = "%player% ate too much carbohydrates";
+        public static String deathVitamins = "%player% didn't eat his veggies";
+        public static String deathVitaminsExtra = "%player% ate too much veggies";
+        public static String deathProteins = "%player% died due to a lack of proteins";
+        public static String deathProteinsExtra = "%player% ate too much proteins";
+        public static String deathGlucose = "%player% ate too much sugar";
         //File
         public static File mconfigFile = new File("plugins/BetterFood/messages.yml");
 
@@ -39,7 +47,15 @@ public class Mensajes {
         
         public static void load() {
                 YamlConfiguration m = YamlConfiguration.loadConfiguration(mconfigFile);
-        //Desidratación
+                deathHydration = m.getString("Death.Dehydration");
+                deathCarbohydrates = m.getString("Death.Carbohydrates");
+                deathCarbohydratesExtra = m.getString("Death.CarbohydratesExtra");
+                deathVitamins = m.getString("Death.Vitamins");
+                deathVitaminsExtra = m.getString("Death.VitaminsExtra");
+                deathProteins = m.getString("Death.Proteins");
+                deathProteinsExtra = m.getString("Death.ProteinsExtra");
+                deathGlucose = m.getString("Death.Glucose");
+                //Desidratación
                 DESHIDRATACION_NIVEL_1 = m.getString("Dehydration.1");
                 DESHIDRATACION_NIVEL_2 = m.getString("Dehydration.2");
                 DESHIDRATACION_NIVEL_3 = m.getString("Dehydration.3");
@@ -71,6 +87,15 @@ public class Mensajes {
         
         public static void save() {
                 YamlConfiguration mconfig = new YamlConfiguration();
+                mconfig.set("Death.Dehydration", deathHydration);  
+                mconfig.set("Death.Carbohydrates", deathCarbohydrates);
+                mconfig.set("Death.CarbohydratesExtra", deathCarbohydratesExtra);
+                mconfig.set("Death.Vitamins", deathVitamins);
+                mconfig.set("Death.VitaminsExtra", deathVitaminsExtra);
+                mconfig.set("Death.Proteins", deathProteins);
+                mconfig.set("Death.ProteinsExtra", deathProteinsExtra);
+                mconfig.set("Death.Glucose", deathGlucose);
+                
                 mconfig.set("Dehydration.1", DESHIDRATACION_NIVEL_1);
                 mconfig.set("Dehydration.2", DESHIDRATACION_NIVEL_2);
                 mconfig.set("Dehydration.3", DESHIDRATACION_NIVEL_3);
