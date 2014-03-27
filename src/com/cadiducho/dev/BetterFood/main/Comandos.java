@@ -1,7 +1,6 @@
 package com.cadiducho.dev.BetterFood.main;
 
 import java.util.HashMap;
-import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getServer;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -9,17 +8,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.scoreboard.Team;
 
 public class Comandos implements CommandExecutor{
      public static BetterFood plugin;
      public static String command;
-     
+     /* TEST */
         private Scoreboard board;
         private Objective o;
         private final HashMap<OfflinePlayer, Score> scores = new HashMap<>();
@@ -34,41 +30,29 @@ public class Comandos implements CommandExecutor{
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				if (args.length > 0) {
-					if (args[0].equalsIgnoreCase("setfood") && player.hasPermission("betterfood.admin")) {
+					if (args[0].equalsIgnoreCase("setfood") && player.hasPermission("betterfood.admin.setfood")) {
+                                            if (args.length != 1) {
                                             Player user = player.getServer().getPlayer(args[2]);
-                                            
-						user.setFoodLevel(Integer.parseInt(args[1]));
-					} else { sender.sendMessage(ChatColor.GREEN + "Use /health setfood <int> <player>");}
-                                        if (args[0].equalsIgnoreCase("reset") && player.hasPermission("betterfood.admin") &&
-							args.length >= 2) {
-						reset(getServer().getPlayer(args[1]));  
-                                               
-					} else { sender.sendMessage(ChatColor.GREEN + "Use /health reset <player>");}
+                                            user.setFoodLevel(Integer.parseInt(args[1]));
+                                            } else {
+                                              sender.sendMessage(ChatColor.GREEN + "Use /BetterFood setfood <foodLevel> <player>!");  
+                                            }
+					}
+                                        else if (args[0].equalsIgnoreCase("reset") && player.hasPermission("betterfood.admin.reset")) {
+                                            if (args.length != 1) {
+                                            String argument = args[1];
+                                            Player pReset = getServer().getPlayerExact(argument);
+                                                if(pReset != null){
+                                                plugin.reset(pReset);
+                                                } else {
+                                                    sender.sendMessage(ChatColor.RED + "This player is not online!");  
+                                                }
+                                            } else {
+                                              sender.sendMessage(ChatColor.GREEN + "Use /BetterFood reset <player>!");  
+                                            }    
+                                        } else { sender.sendMessage(ChatColor.GREEN + "Use /BetterFood <setfood|reset|anotherArg> ");}
+                              } else { sender.sendMessage(ChatColor.GREEN + "Use /BetterFood <setfood|reset|anotherArg> ");}
 
-                                        if (args[0].equalsIgnoreCase("sctest")) {
-                                                            /* Scoreboard 1.1Beta */
-                                                            board = Bukkit.getServer().getScoreboardManager().getNewScoreboard();
-               
-                                                            o = board.registerNewObjective("test", "dummy");
-                                                            o.setDisplayName("Health Stats");
-                                                            o.setDisplaySlot(DisplaySlot.SIDEBAR);
-                                                            int s = plugin.carbohidratos.get(player);
-  
-                                        }
-                                     /*  if (args[0].equalsIgnoreCase("set") && player.hasPermission("betterfood.admin")) {
-                                           if (args[1].equalsIgnoreCase("1")) {
-                                              Player user = player.getServer().getPlayer(args[2]); 
-                                              try {
-                                              int a = Integer.parseInt(args[3]);
-                                              proteinas.remove(user);
-                                              proteinas.put(user, a);
-                                              } catch (NumberFormatException e) {
-					      sender.sendMessage(ChatColor.RED + args[3] + " is not a number!");
-                                              }
-                                           }
-                                            
-                                        } */
-                                }
 
                                 
 			} else { sender.sendMessage(ChatColor.RED + "This command only can be executable by a player"); }
@@ -116,16 +100,27 @@ public class Comandos implements CommandExecutor{
             }
             sender.sendMessage(ChatColor.GREEN + "/salud ayuda ► Ver este mensaje");
         }
-        private static int value;
-        public void reset(Player player) {
-		value = 0;
-		plugin.proteinas.remove(player);
-		plugin.proteinas.put(player, value);
-		plugin.vitaminas.remove(player);
-		plugin.vitaminas.put(player, value);
-		plugin.carbohidratos.remove(player);
-		plugin.carbohidratos.put(player, value);
-		plugin.hidratacion.remove(player);
-		plugin.hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
-	}
 }
+                            /*   if (args[0].equalsIgnoreCase("sctest")) {
+                                                            //Scoreboard 1.1Beta 
+                                                            board = Bukkit.getServer().getScoreboardManager().getNewScoreboard();
+               
+                                                            o = board.registerNewObjective("test", "dummy");
+                                                            o.setDisplayName("Health Stats");
+                                                            o.setDisplaySlot(DisplaySlot.SIDEBAR);
+                                                            int s = plugin.carbohidratos.get(player);
+  
+                                        }*/
+                                     /*  if (args[0].equalsIgnoreCase("set") && player.hasPermission("betterfood.admin")) {
+                                           if (args[1].equalsIgnoreCase("1")) {
+                                              Player user = player.getServer().getPlayer(args[2]); 
+                                              try {
+                                              int a = Integer.parseInt(args[3]);
+                                              proteinas.remove(user);
+                                              proteinas.put(user, a);
+                                              } catch (NumberFormatException e) {
+					      sender.sendMessage(ChatColor.RED + args[3] + " is not a number!");
+                                              }
+                                           }
+                                            //ToDo in BetterFood Beta.1.2
+                                        } */

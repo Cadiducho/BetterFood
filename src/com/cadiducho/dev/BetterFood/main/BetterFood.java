@@ -11,22 +11,17 @@ import com.cadiducho.dev.BetterFood.listeners.PlayerConsumeListener;
 import com.cadiducho.dev.BetterFood.listeners.PlayerDeathListener;
 import com.cadiducho.dev.BetterFood.listeners.PlayerJoinListener;
 import com.cadiducho.dev.BetterFood.listeners.PlayerRespawnListener;
+import static com.cadiducho.dev.BetterFood.main.Comandos.plugin;
 import java.io.File;
 import java.util.List;
 
 //Imports de Bukkit
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.scoreboard.Team;
 
 
 public class BetterFood extends JavaPlugin {
@@ -56,7 +51,7 @@ public class BetterFood extends JavaPlugin {
 	@Override
 	public void onEnable() {
             if (Config.UPDATER = true) {
-                Update updateCheck = new Update(66441, "acb5d9fcd0c7f710d50c2e893eccc537917e7417");
+                Update u = new Update(66441, "acb5d9fcd0c7f710d50c2e893eccc537917e7417");
             }
 		log.info("[BetterFood] Plugin have been enabled!");
 		
@@ -75,6 +70,7 @@ public class BetterFood extends JavaPlugin {
 		manager.registerEvents(PlayerRespawnListener, this);
                 
                 getCommand("health").setExecutor(new Comandos());
+                getCommand("betterfood").setExecutor(new Comandos());
                 
 		
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Timer(this), 20, 20);
@@ -99,7 +95,8 @@ public class BetterFood extends JavaPlugin {
 	@Override
 	public void onDisable() {
               log.info("[BetterFood] Plugin have been disabled!!");
-              		
+              /* ToDo in BetterFood Beta.1.2 */	
+              /*
                 List<String> hdata = dataStats.getStringList("hidratación"); 
                 for (Player pl : hidratacion.keySet()){
                    hdata.add(pl.getName() + ":" + hidratacion.get(pl).intValue());
@@ -116,7 +113,15 @@ public class BetterFood extends JavaPlugin {
                 for (Player pl : proteinas.keySet()){
                    pdata.add(pl.getName() + ":" + proteinas.get(pl).intValue());
                 }
+          */
+	}
+                    
 
+        public void reset(Player player) {
+                        this.hidratacion.put(player, Stats.COMIENZO_HIDRATACION);
+			this.carbohidratos.put(player, 0);
+			this.proteinas.put(player, 0);
+			this.vitaminas.put(player, 0);
 	}
 
 }
