@@ -1,25 +1,15 @@
 package com.cadiducho.dev.BetterFood.main;
 
-import java.util.HashMap;
-import static org.bukkit.Bukkit.getServer;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
 
 public class Comandos implements CommandExecutor{
      public static BetterFood plugin;
      public static String command;
-     /* TEST */
-        private Scoreboard board;
-        private Objective o;
-        private final HashMap<OfflinePlayer, Score> scores = new HashMap<>();
-        private boolean sc = false;
+
        
 
 
@@ -40,46 +30,52 @@ public class Comandos implements CommandExecutor{
 					}
                                         else if (args[0].equalsIgnoreCase("reset") && player.hasPermission("betterfood.admin.reset")) {
                                             if (args.length != 1) {
-                                            String argument = args[1];
-                                            Player pReset = getServer().getPlayerExact(argument);
+                                            Player pReset = plugin.getServer().getPlayer(args[1]);
                                                 if(pReset != null){
-                                                plugin.reset(pReset);
+                                                plugin.reset(plugin.getServer().getPlayer(args[1]));
                                                 } else {
                                                     sender.sendMessage(ChatColor.RED + "This player is not online!");  
-                                                }
+                                               }
                                             } else {
                                               sender.sendMessage(ChatColor.GREEN + "Use /BetterFood reset <player>!");  
                                             }    
                                         } else { sender.sendMessage(ChatColor.GREEN + "Use /BetterFood <setfood|reset|anotherArg> ");}
-                              } else { sender.sendMessage(ChatColor.GREEN + "Use /BetterFood <setfood|reset|anotherArg> ");}
-
-
-                                
+                              } else { sender.sendMessage(ChatColor.GREEN + "Use /BetterFood <setfood|reset|anotherArg> ");}     
 			} else { sender.sendMessage(ChatColor.RED + "This command only can be executable by a player"); }
 		}
                 if (commandLabel.equalsIgnoreCase("salud") || commandLabel.equalsIgnoreCase("health")) {
                     if (sender instanceof Player) {
-				Player player = (Player) sender;
-                                        if (args[0].equalsIgnoreCase("help")) {
-                                            menuAyuda(sender);
-                                        }
-                                        if (args[0].equalsIgnoreCase("ayuda")) {
-                                            menuAyudaEs(sender);                                          
-                                        }
-                                if (args.length > 3){
-                                    sender.sendMessage(ChatColor.GREEN + "Use /health help for command help");
-				if (args.length <= 0){
-                                    Stats.show(player);
+                        Player player = (Player) sender;
+                        switch(args.length){
+                            case 0:
+                                Stats.show(player);
+                                break;
+                            case 1:
+                                switch(args[0].toString()){
+                                    case "help":
+                                        menuAyuda(sender);
+                                        break;
+                                    case "ayuda":
+                                        menuAyudaEs(sender);
+                                        break;
+                                    default:
+                                        sender.sendMessage(ChatColor.GREEN + "Use /health <help|ayuda> for commands help");
+                                        break; 
                                 }
-                           }
+                                break;
+                            default:
+                                sender.sendMessage(ChatColor.GREEN + "Use /health for stats, or /health help for commands help");
+                                break;
+                        }
                     } else { sender.sendMessage(ChatColor.RED + "This command only can be executable by a player"); }
+                    
                 }
 		
 		return false;
 	}
      
         private void menuAyuda(CommandSender sender) {
-		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "-------------{ " +
+		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "--------------{ " +
 				ChatColor.GOLD +	"BetterFood Help" + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
             sender.sendMessage(ChatColor.GREEN + "/health ayuda ► Ayuda en español/Help in Spanish");
             sender.sendMessage(ChatColor.GREEN + "/health ► View your health stats");
@@ -90,7 +86,7 @@ public class Comandos implements CommandExecutor{
             sender.sendMessage(ChatColor.GREEN + "/health help ► Show this message");
         }
         private void menuAyudaEs(CommandSender sender) {
-		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "-------------{ " +
+		sender.sendMessage(ChatColor.GREEN + "**" + ChatColor.YELLOW + "--------------{ " +
 				ChatColor.GOLD +	"Ayuda de BetterFood" + ChatColor.YELLOW + " }------------" + ChatColor.GREEN + "**");
             sender.sendMessage(ChatColor.GREEN + "/salud help ► Help in English");
             sender.sendMessage(ChatColor.GREEN + "/salud ► Ver tus stats de salud");
