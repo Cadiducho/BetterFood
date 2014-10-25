@@ -1,4 +1,27 @@
-# BetterFood Version 1.0Beta  #
-#       Messages Config       #
+# BetterFood Version 2.0Beta  #
+#       Plugin Config         #
 ###############################
-##Automatic write by the system
+
+debug: 
+    enabled: false
+    lang: eng
+mysql:
+    enabled: true
+    username: root
+    host: localhost
+    post: 3308
+    database: foodbalance
+    password: private
+flatfile:
+    file: data.yml
+UpdaterChecker: true
+names:
+    title: Health Stats
+    Hydratation: Hydratation
+    Carbohydrates: Carbohydrates
+    Proteins: Proteins
+    Vitamins: Vitamins
+  
+
+        
+        

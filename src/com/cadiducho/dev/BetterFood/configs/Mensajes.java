@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.logging.Level;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.cadiducho.dev.BetterFood.main.BetterFood;
+import com.cadiducho.dev.BetterFood.BetterFood;
 
 
 public class Mensajes {

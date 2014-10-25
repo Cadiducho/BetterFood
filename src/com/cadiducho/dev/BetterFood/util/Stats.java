@@ -1,5 +1,6 @@
-package com.cadiducho.dev.BetterFood.main;
+package com.cadiducho.dev.BetterFood.util;
 
+import com.cadiducho.dev.BetterFood.BetterFood;
 import com.cadiducho.dev.BetterFood.configs.Config;
 import com.cadiducho.dev.BetterFood.configs.Mensajes;
 import org.bukkit.ChatColor;

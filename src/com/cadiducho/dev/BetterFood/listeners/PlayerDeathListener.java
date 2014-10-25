@@ -1,8 +1,8 @@
 package com.cadiducho.dev.BetterFood.listeners;
 
 import com.cadiducho.dev.BetterFood.configs.Mensajes;
-import com.cadiducho.dev.BetterFood.main.Stats;
-import com.cadiducho.dev.BetterFood.main.BetterFood;
+import com.cadiducho.dev.BetterFood.util.Stats;
+import com.cadiducho.dev.BetterFood.BetterFood;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -1,7 +1,7 @@
 package com.cadiducho.dev.BetterFood.listeners;
 
-import com.cadiducho.dev.BetterFood.main.Stats;
-import com.cadiducho.dev.BetterFood.main.BetterFood;
+import com.cadiducho.dev.BetterFood.util.Stats;
+import com.cadiducho.dev.BetterFood.BetterFood;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
